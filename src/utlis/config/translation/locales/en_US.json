@@ -429,7 +429,6 @@
   "max_product": "Max Product",
   "profile image": "Profile Image",
   "User": "User",
-  "Merchant": "Merchant",
   "index": "Index",
   "question_en": "Question (En)",
   "question_ar": "Question (Ar)",
@@ -502,5 +501,12 @@
   "business_informations": "Business Informations",
   "area-egypt": "Area Egypt",
   "offer_price": "Offer Price",
-  "Show Product": "Show Product"
+  "Show Product": "Show Product",
+  "active": "ACTIVE",
+  "addresses": "addresses",
+  "street_name": "Street Name",
+  "float_num": "Float Num",
+  "building_num": "Building Num",
+  "user": "user",
+  "merchant": "merchant"
 }

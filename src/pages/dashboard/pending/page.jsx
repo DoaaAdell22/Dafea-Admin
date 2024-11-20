@@ -35,8 +35,8 @@ const page = () => {
   
   const TAKE = 10 ;
   const TYPE = {
-    1 : "user" ,
-    2 : "merchant"
+    1 : <FormattedMessage id='user' /> ,
+    2 : <FormattedMessage id='merchant' />
   }
 
   const STATUS = {
@@ -116,6 +116,7 @@ const requestMerchants = () => {
     dataIndex: 'status',
     render: (text , record) => STATUS[text] ?? '' ,
   },
+  
   // {
   //   title: 'type',
   //   dataIndex: 'type',

@@ -11,8 +11,8 @@ const ShowPage = () => {
   const idToken = useSelector(state => state.Auth.idToken);
 
   const TYPE = {
-    1: "user",
-    2: "merchant"
+    1: <FormattedMessage id='user' />,
+    2: <FormattedMessage id='merchant' />
   };
 
   const STATUS = {

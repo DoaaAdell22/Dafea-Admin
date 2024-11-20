@@ -4,6 +4,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import axios from 'axios';
 import { FormattedMessage } from 'react-intl';
+import { Table } from 'antd';
 const ShowPage = () => {
   const location = useLocation();
   const [data, setData] = useState({});
@@ -11,8 +12,8 @@ const ShowPage = () => {
   const idToken = useSelector(state => state.Auth.idToken);
 
   const TYPE = {
-    1: "user",
-    2: "merchant"
+    1: <FormattedMessage id='user' />,
+    2: <FormattedMessage id='merchant' />
   };
 
   const STATUS = {
@@ -34,6 +35,49 @@ const ShowPage = () => {
     .catch((error) => {
     });
   }, []);
+
+
+const addresses = [
+    {
+      title: <FormattedMessage id='address'  />,
+      dataIndex: 'address',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='street_name'  />,
+      dataIndex: 'street_name',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='building_num'  />,
+      dataIndex: 'building_num',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='float_num'  />,
+      dataIndex: 'float_num',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='area'  />,
+      dataIndex: 'area',
+      render: (text, record, index) => <Image src={text} width={80} height={80} />
+      
+    },
+    
+    {
+      title: <FormattedMessage id='Expired Date'  />,
+      dataIndex: 'expired_date',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    
+  ]
+  
 
   const items = [
    
@@ -72,6 +116,19 @@ const ShowPage = () => {
       label: <FormattedMessage id='type' />,
       span: 3,
       children:  TYPE[data.type] ?? "",
+    },
+    {
+      key: '8',
+      label: <FormattedMessage id='addresses' />,
+      span: 3,
+      children:  <Table 
+      columns={addresses}
+      dataSource={data.addresses}
+      pagination = {false}
+
+    className="custom-table"  />
+
+,
     },
   ];
 

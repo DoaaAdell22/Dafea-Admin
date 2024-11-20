@@ -34,13 +34,13 @@ const page = () => {
   
   const TAKE = 10 ;
   const TYPE = {
-    1 : "user" ,
-    2 : "merchant"
+    1 : <FormattedMessage id='user' /> ,
+    2 : <FormattedMessage id='merchant' />
   }
 
   const STATUS = {
     1 : <FormattedMessage id="PENDING" /> ,
-    2 : <FormattedMessage id="ACTIVE" /> ,
+    2 : <FormattedMessage id="active" /> ,
     3 : <FormattedMessage id="BLOCKED" />
   } 
 

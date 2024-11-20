@@ -75,14 +75,14 @@ const Page = () => {
           name="about_en"
           rules={[{ required: true, message: 'This field is required' }]}
         >
-          <Input />
+          <Input.TextArea />
         </Form.Item>
         <Form.Item 
           label=<FormattedMessage id='about_ar' /> 
           name="about_ar"
           rules={[{ required: true, message: 'This field is required' }]}
         >
-          <Input />
+          <Input.TextArea />
         </Form.Item>
         <Form.Item 
           label=<FormattedMessage id='whatsapp_num' /> 

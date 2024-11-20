@@ -15,8 +15,8 @@ const ShowPage = () => {
   const navigate = useNavigate();
 
   const TYPE = {
-    1: "user",
-    2: "merchant"
+    1: <FormattedMessage id='user' />,
+    2: <FormattedMessage id='merchant' />
   };
 
   const STATUS = {
@@ -151,20 +151,9 @@ const ShowPage = () => {
       span: 3,
       children:  TYPE[data.type] ?? "",
     },
+   
     {
       key: '8',
-      label: <FormattedMessage id='Dynamic Link' />,
-      span: 3,
-      children:  <Table 
-      columns={dynamicLinksCols}
-      dataSource={data.dynamic_links}
-      pagination = {false}
-    className="custom-table"  />
-
-,
-    },
-    {
-      key: '9',
       label: <FormattedMessage id='business_informations' />,
       span: 3,
       children:  <Table 
@@ -172,6 +161,18 @@ const ShowPage = () => {
       dataSource={data.business_informations}
       pagination = {false}
 
+    className="custom-table"  />
+
+,
+    },
+    {
+      key: '9',
+      label: <FormattedMessage id='Dynamic Link' />,
+      span: 3,
+      children:  <Table 
+      columns={dynamicLinksCols}
+      dataSource={data.dynamic_links}
+      pagination = {false}
     className="custom-table"  />
 
 ,
