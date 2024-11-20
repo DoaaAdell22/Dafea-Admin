@@ -182,7 +182,6 @@ const ShowPage = () => {
   return (
     <div>
     
-  <p>Status: {data.status}</p>
 
       <Descriptions bordered  layout="horizontal" items={items} />
     </div>
