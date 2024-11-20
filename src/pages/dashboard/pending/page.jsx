@@ -127,7 +127,7 @@ const requestMerchants = () => {
     dataIndex: 'action',
     render: (text, record, index) => (
       <div className='flex gap-5 justify-center items-center'>
-      <Button onClick={() => navigate(`/dashboard/clients/show/${record.id}`)}>
+      <Button onClick={() => navigate(`/dashboard/pending/show/${record.id}`)}>
           <FormattedMessage id="show" />
         </Button>
         {record.status === 1 ? (

@@ -5,13 +5,14 @@ import { useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FormattedMessage } from 'react-intl';
+import { Table } from 'antd';
+
 const ShowPage = () => {
   const location = useLocation();
   const [data, setData] = useState({});
   const params = useParams();
   const idToken = useSelector(state => state.Auth.idToken);
   const navigate = useNavigate();
-  const [dynamic_links, setDynamic_links] = useState({});
 
   const TYPE = {
     1: "user",
@@ -32,14 +33,85 @@ const ShowPage = () => {
       }
     })
     .then((res) => {
-
       setData(res.data.data);
-      setDynamic_links(res.data.data.dynamic_links)
-
     })
     .catch((error) => {
     });
   }, []);
+  const businessInformationsCols = [
+    {
+      title: <FormattedMessage id='name'  />,
+      dataIndex: 'name',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='city'  />,
+      dataIndex: 'city',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='area'  />,
+      dataIndex: 'area',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='Commercial Record'  />,
+      dataIndex: 'commercial_record',
+      render: (text, record, index) => <Image src={text} width={80} height={80} />
+      
+    },
+    {
+      title: <FormattedMessage id='Expired Date'  />,
+      dataIndex: 'expired_date',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='tax_number'  />,
+      dataIndex: 'tax_number',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+  ]
+
+  const dynamicLinksCols = [
+    {
+      title: <FormattedMessage id='name'  />,
+      dataIndex: 'name',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='description'  />,
+      dataIndex: 'description',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='delivery_price'  />,
+      dataIndex: 'delivery_price',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='tax_ratio'  />,
+      dataIndex: 'tax_ratio',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='actions'  />,
+      dataIndex: 'id',
+      render: (text, record, index) => <Link onClick={() => navigate(`/dashboard/dynamic-link/show/${text}`)}>
+        <FormattedMessage id="Show Product" />
+       </Link>
+      
+    },
+    
+  ]
 
   const items = [
    
@@ -83,11 +155,27 @@ const ShowPage = () => {
       key: '8',
       label: <FormattedMessage id='Dynamic Link' />,
       span: 3,
-      children:   <Link onClick={() => navigate(`/dashboard/dynamic-link/show/${dynamic_links.link_id}`)}>
-      <FormattedMessage id="show" />
-    </Link>
+      children:  <Table 
+      columns={dynamicLinksCols}
+      dataSource={data.dynamic_links}
+      pagination = {false}
+    className="custom-table"  />
+
 ,
-    }
+    },
+    {
+      key: '9',
+      label: <FormattedMessage id='business_informations' />,
+      span: 3,
+      children:  <Table 
+      columns={businessInformationsCols}
+      dataSource={data.business_informations}
+      pagination = {false}
+
+    className="custom-table"  />
+
+,
+    },
   ];
 
   return (
