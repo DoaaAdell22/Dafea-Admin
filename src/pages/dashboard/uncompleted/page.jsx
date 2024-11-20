@@ -110,6 +110,12 @@ const requestMerchants = () => {
     dataIndex: 'email',
     render: (text ,record) => text +" "  + (record.email_verified?"✔":"✗") 
   },
+  {
+    title: <FormattedMessage id='status' /> ,
+    dataIndex: 'status',
+    render: (text , record) => STATUS[text] ?? '' ,
+  },
+
 
   // {
   //   title: 'type',

@@ -5,11 +5,11 @@ import { useSelector } from "react-redux";
 import axios from 'axios';
 import { FormattedMessage } from 'react-intl';
 import RollerLoading from 'components/loading/roller';
+import { Table , Image } from 'antd';
 
 const ShowPage = () => {
   const location = useLocation();
   const [data, setData] = useState({});
-  const [product, setProduct] = useState([]);
   const params = useParams();
   const idToken = useSelector(state => state.Auth.idToken);
 
@@ -36,23 +36,45 @@ const ShowPage = () => {
     })
     .then((res) => {
       setData(res.data.data);
-      setProduct(res.data.data.products);
     })
     .catch((error) => {
     });
   }, []);
 
-  const products = product.map((el, index) => (
-    <Descriptions bordered column={1} key={index}>
-      <Descriptions.Item label={<FormattedMessage id="Name" />}>{el.name}</Descriptions.Item>
-      <Descriptions.Item label={<FormattedMessage id="Description" />}>{el.description}</Descriptions.Item>
-      <Descriptions.Item label={<FormattedMessage id="Amount" />}>{el.amount}</Descriptions.Item>
-      <Descriptions.Item label={<FormattedMessage id="Price" />}>{el.price}</Descriptions.Item>
-      <Descriptions.Item label={<FormattedMessage id="image" />}>
-        <img src={el.image} width={80} height={80} alt={el.name} />
-      </Descriptions.Item>
-    </Descriptions>
-  ));
+  
+  const products = [
+    {
+      title: <FormattedMessage id='name'  />,
+      dataIndex: 'name',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='Description'  />,
+      dataIndex: 'description',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='amount'  />,
+      dataIndex: 'amount',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='image'  />,
+      dataIndex: 'image',
+      render: (text, record, index) => <Image src={text} width={80} height={80} />
+      
+    },
+    {
+      title: <FormattedMessage id='Price'  />,
+      dataIndex: 'price',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    
+  ]
 
   const items = [
     {
@@ -107,7 +129,12 @@ const ShowPage = () => {
       key: 'product',
       label: <FormattedMessage id="Product" />,
       span: 3,
-      children: <div className='mx-[-25px] my-[-18px]'>{products}</div>,
+      children:  <Table 
+      columns={products}
+      dataSource={data.products}
+      pagination = {false}
+    className="custom-table"  />
+
     }
   ];
 
