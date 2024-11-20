@@ -17,7 +17,7 @@ const page = () => {
   const language = useSelector(state => state.LanguageSwitcher.language);
   const idToken = useSelector(state => state.Auth.idToken);
 
-  const [users , setUsers ] =useState([]);
+  const [merchants , setMerchants ] =useState([]);
   const [total , setTotal] =useState(0)
   const [currentPage , setcurrentPage] =useState(1)
   const [type, setType] = useState(undefined);
@@ -28,6 +28,7 @@ const page = () => {
   const [click4 , setClick4] = useState(null)
   const [search , setSearch] = useState('')
 
+ 
   const onSearchChange = debounce((value) => {
     setSearch(value);
   }, 500);
@@ -44,43 +45,44 @@ const page = () => {
     3 : <FormattedMessage id="BLOCKED" />
   } 
 
-const requestUsers = () => {
+
+const requestMerchants = () => {
   setLoading(true)
 
   const params = {
     take:TAKE,
     skip:(currentPage-1)*TAKE,
-    type : 1
+    type : 2
   }
-  
+  params["filter[status]"]="pending" ;
   if(search){
     params["filter[search]"]=search
     
   }
-  
+   
+    
   axios.get("https://dafeaa-backend.deplanagency.com/api/admin/clients" ,{
     headers : {
         Authorization:`Bearer ${idToken}`
         },
-        params,
+        params ,
         
   }).then((res)=>{
     console.log(res.data)
-    setUsers(res.data.data)
+    setMerchants(res.data.data)
     setTotal(res.data.count)
     setLoading(false)
 
   }).catch(()=>{})
 }
-
+ 
    useEffect(()=>{
     
 
    
-    requestUsers()
-
+    requestMerchants()
   },[currentPage ,type ,search ])
-  
+
   const columns = [
 
   {
@@ -125,19 +127,19 @@ const requestUsers = () => {
     dataIndex: 'action',
     render: (text, record, index) => (
       <div className='flex gap-5 justify-center items-center'>
-      
-      <Button onClick={() => navigate(`/dashboard/Users/show/${record.id}`,  { 
-          })}><FormattedMessage id='show' /></Button>
-        
-          {record.status === 2 ? (
-            <Button loading={click3 === record.id} danger onClick={() => blockHandler(record.id)}>
-              <FormattedMessage id='block' />
-            </Button>
-          ) : (
-            <Button loading={click4 === record.id} danger onClick={() => unblockHandler(record.id)}>
-              <FormattedMessage id='unblock' />
-            </Button>
-          )}
+      <Button onClick={() => navigate(`/dashboard/clients/show/${record.id}`)}>
+          <FormattedMessage id="show" />
+        </Button>
+        {record.status === 1 ? (
+      <div className='flex gap-2'>
+        <Button loading={click1 === record.id} onClick={() => acceptHandler(record.id)}>
+          <FormattedMessage id='accept' />
+        </Button>
+        <Button loading={click2 === record.id} onClick={() => rejectHandler(record.id)}>
+          <FormattedMessage id='reject' />
+        </Button>
+      </div>
+    ) : ''}
       </div>
       
     )
@@ -145,39 +147,41 @@ const requestUsers = () => {
 ];
 
 
-// const acceptHandler = (id) => {
-//   setLoading(true)
-//   setClick1(id)
-//   axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/accept`, {} , { 
-//     headers : {
-//       Authorization:`Bearer ${idToken}`
-//       }})
-//   .then((res)=>{ 
+const acceptHandler = (id) => {
+  setLoading(true)
+  setClick1(id)
+  axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/accept`, {} , { 
+    headers : {
+      Authorization:`Bearer ${idToken}`
+      }})
+  .then((res)=>{ 
 
-//     message.success(res.data.message)
-//     setLoading(false)
-//     setClick1(null)
+    message.success(res.data.message)
+    requestMerchants();
+    setLoading(false)
+    setClick1(null)
 
-//   })
-//   .catch(() => {
-//   });
-// };
-// const rejectHandler = (id) => {
-//   setClick2(id)
-//   axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/reject`, {} ,
-//     {
-//     headers: { Authorization: `Bearer ${idToken}` }
-//   })
-//   .then((res)=>{ 
-//     message.success(res.data.message)
+  })
+  .catch(() => {
+  });
+};
+const rejectHandler = (id) => {
+  setClick2(id)
+  axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/reject`, {} ,
+    {
+    headers: { Authorization: `Bearer ${idToken}` }
+  })
+  .then((res)=>{ 
+    message.success(res.data.message)
 
-//     setLoading(false)
-//     const updatedClients = users.filter(users => users.id !== id);
-//     setClient(updatedClients);
-//   })
-//   .catch(() => {
-//   });
-// };
+    requestMerchants();
+    setLoading(false)
+    const updatedClients = client.filter(client => client.id !== id);
+    setClient(updatedClients);
+  })
+  .catch(() => {
+  });
+};
 const blockHandler = (id) => {
   setClick3(id)
   axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/block`,  {} ,
@@ -186,7 +190,7 @@ const blockHandler = (id) => {
   })
   .then((res)=>{ 
     message.success(res.data.message)
-    requestUsers();
+    requestMerchants();
     setLoading(false)
     setClick3(null)
   })
@@ -200,7 +204,7 @@ const unblockHandler = (id) => {
   })
   .then((res) => {
     message.success(res.data.message);
-    requestUsers();
+    requestMerchants();
     setLoading(false);
     setClick4(null);
   })
@@ -210,21 +214,22 @@ const unblockHandler = (id) => {
 
   return (
     <div>
-    <h1><FormattedMessage id='Users' /></h1>
-    <div className='flex gap-6 items-end justify-between my-5'>
-      <Search
-      placeholder={intl.formatMessage({ id: "search_placeholder" })}
-      allowClear
-      enterButton= {<FormattedMessage id='search' />}
-      size="large"
-      style={{
-        width: 300,
-      }}
-      onChange={(e) => onSearchChange(e.target.value)}    />
-    </div>
-       <Table scroll={{ x: 500 }} 
+    
+      <h1><FormattedMessage id='Pending' /></h1>
+      <div className='flex gap-6 items-center justify-between my-5'>
+        <Search
+        placeholder={intl.formatMessage({ id: "search_placeholder" })}
+        allowClear
+        enterButton= {<FormattedMessage id='search' />}
+        size="large"
+        style={{
+          width: 300,
+        }}
+        onChange={(e) => onSearchChange(e.target.value)}    />
+      </div>
+       <Table 
         columns={columns}
-        dataSource={users}
+        dataSource={merchants} 
         pagination={{
           total : total ,
           current : currentPage ,
@@ -233,10 +238,8 @@ const unblockHandler = (id) => {
         }
         onChange={(pagination)=>{setcurrentPage(pagination.current)}}
       loading={loading}
-      className="custom-table " 
-      rowClassName="block md:table-row"
-      />
-      
+      className="custom-table"  />
+
     </div>
   )
 }

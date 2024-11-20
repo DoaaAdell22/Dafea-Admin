@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
+import Link from 'antd/es/typography/Link';
 
 const page = () => {
   const navigate = useNavigate()
@@ -126,10 +127,13 @@ const clientsRequest = () =>{
   {
     title: <FormattedMessage id='client_name' />,
     dataIndex: 'client_name',
+    render : (text , record) => <Link onClick={() => navigate(`/dashboard/clients/show/${record.id}`)}>{record.client_name}</Link>
   },
   {
     title: <FormattedMessage id='merchant_name' />,
     dataIndex: 'merchant_name',
+    render : (text , record) => <Link onClick={() => navigate(`/dashboard/clients/show/${record.id}`)}>{record.merchant_name}</Link>
+
   },
   {
     title: <FormattedMessage id='order_status' />,
@@ -152,6 +156,7 @@ const clientsRequest = () =>{
   {
     title: <FormattedMessage id='tax_price' />,
     dataIndex: 'tax_price',
+    render : (text , record) => record.tax_price + ` (${record.tax_ratio}%)`
   },
   {
     title: <FormattedMessage id='total_price' />,

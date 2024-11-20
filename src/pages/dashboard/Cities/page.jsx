@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
+import { debounce } from 'lodash';
 
 const page = () => {
   const { Search } = Input;
@@ -21,12 +22,10 @@ const page = () => {
   const [loading, setLoading] = useState(false)
   const [click , setClick] = useState(null)
   const [search , setSearch] = useState('')
-  const onSearch = (value) => {
-
-    setSearch(value)
-    console.log(info?.source, value);
-
-  }
+  const onSearchChange = debounce((value) => {
+    setSearch(value);
+  }, 500);
+  
   const TAKE = 10 ;
   
 const request = () =>{
@@ -129,7 +128,7 @@ const deleteHandler = (id) => {
     <div>
     <h1><FormattedMessage id='Cities' /></h1>
     <div className='flex gap-6 items-center justify-between my-5'>
-    <Button  type='primary' onClick={()=>{navigate('/dashboard/Cities/add')}}>+<FormattedMessage id='add' / > </Button>
+    <Button  type='primary' onClick={()=>{navigate('/dashboard/Cities/add')}}> +  <FormattedMessage id='add' / > </Button>
     <Search
     placeholder= {intl.formatMessage({ id: "search_by_name" })} 
     allowClear
@@ -138,9 +137,8 @@ const deleteHandler = (id) => {
       style={{
         width: 300,
       }}
-      onSearch={onSearch}
-    />
-    </div>
+      onChange={(e) => onSearchChange(e.target.value)}    />
+      </div>
        <Table 
         columns={columns}
         dataSource={cities}

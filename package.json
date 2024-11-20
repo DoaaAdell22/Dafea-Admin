@@ -20,6 +20,7 @@
     "framer-motion": "^11.1.1",
     "google-libphonenumber": "^3.2.34",
     "jwt-decode": "^4.0.0",
+    "lodash": "^4.17.21",
     "logger": "^0.0.1",
     "loggers": "^0.0.2",
     "mask-email-phone": "^1.0.2",

@@ -62,7 +62,7 @@ function Topbar({
         />
         {/* <Breadcrumb className="text-sm" items={breadcrumbItems} /> */}
       </div>
-      <ul className="flex gap-1 items-center">
+      <ul className="flex gap-1 items-center justify-center">
         <li className="isoUser">
           {" "}
           {/* <ThemesSwitcher />{" "} */}

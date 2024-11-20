@@ -32,11 +32,11 @@ const page = () => {
 
 
   const STATUS = {
-    1 : "INITIAL " ,
-    2 : "PENDING  " ,
-    3 : "SUCCESS " ,
-    4 : "FAIL" ,
-    5 : "CLOSE " ,
+    1 : "Initial " ,
+    2 : "Pending  " ,
+    3 : "Success " ,
+    4 : "Fail" ,
+    5 : "Close " ,
   }
   
 const request = () =>{

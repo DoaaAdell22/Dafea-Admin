@@ -20,6 +20,9 @@ import { AiOutlineFileText } from "react-icons/ai";
 import { FaTreeCity } from "react-icons/fa6";
 import { FaQuestionCircle } from "react-icons/fa";
 import { TbUsersGroup } from "react-icons/tb";
+import { MdPendingActions } from "react-icons/md";
+import { MdIncompleteCircle } from "react-icons/md";
+import { BsClock } from "react-icons/bs";
 
 // Registrations
 
@@ -47,11 +50,33 @@ const getMenuItems: (profile) => MenuItem[] = (profile) =>{
     disabled: false,
   },
   {
-    key: "Merchants",
-    to: "Merchants",
+    key: "merchants",
     label: <FormattedMessage id="merchants" />,
     icon: <TbUsersGroup className="!text-xl" />,
     disabled: false,
+    children : [
+      {
+        key: "current",
+      to: "current",
+      label: <FormattedMessage id="current" />,
+      icon: <BsClock className="!text-xl" />,
+      disabled: false,
+      },
+      {
+        key: "pending",
+      to: "pending",
+      label: <FormattedMessage id="Pending" />,
+      icon: <MdPendingActions className="!text-xl" />,
+      disabled: false,
+      },
+      {
+        key: "Uncompleted",
+      to: "Uncompleted",
+      label: <FormattedMessage id="Uncompleted" />,
+      icon: <MdIncompleteCircle className="!text-xl" />,
+      disabled: false,
+      },
+    ]
   },
   {
     key: "Countries",

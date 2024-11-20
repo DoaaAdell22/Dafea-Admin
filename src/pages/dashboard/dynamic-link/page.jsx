@@ -16,20 +16,20 @@ const ShowPage = () => {
   };
 
   const STATUS = {
-    1 : <FormattedMessage id="PENDING " /> ,
-    2 : <FormattedMessage id="ACTIVE " /> ,
-    3 : <FormattedMessage id="BLOCKED " />
+    1 : <FormattedMessage id="PENDING" /> ,
+    2 : <FormattedMessage id="ACTIVE" /> ,
+    3 : <FormattedMessage id="BLOCKED" />
   } 
 
   const { index, type  } = location.state || {};
   useEffect(() => {
-    axios.get(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${params.id}`, {
+    axios.get(`https://dafeaa-backend.deplanagency.com/api/admin/dynamic-link/${params.link_id}`, {
       headers: {
         Authorization: `Bearer ${idToken}`
       }
     })
     .then((res) => {
-      setData(res.data.data);
+      setData(res.data.dynamic_links);
     })
     .catch((error) => {
     });
@@ -45,34 +45,11 @@ const ShowPage = () => {
     },
     {
       key: '3',
-      label: <FormattedMessage id='profile image' /> ,
+      label: <FormattedMessage id='Description' /> ,
       span: 3,
-      children: <Image src={data.profile_image} width={80} height={80} /> 
+      children: data.description
     },
-    {
-        key: '4',
-        label: <FormattedMessage id='phone' /> ,
-        span: 3,
-        children: `${data.phone} ${data.phone_verified ? "✔" : "✗"}`
-    },
-    {
-        key: '5',
-        label: <FormattedMessage id='email' /> ,
-        span: 3,
-        children: `${data.email} ${data.email_verified ? "✔" : "✗"}`,
-    },
-    {
-      key: '6',
-      label: <FormattedMessage id='status' />,
-      span: 3,
-      children: STATUS[data.status]??'' ,
-    },
-    {
-      key: '7',
-      label: <FormattedMessage id='type' />,
-      span: 3,
-      children:  TYPE[data.type] ?? "",
-    },
+    
   ];
 
   return (

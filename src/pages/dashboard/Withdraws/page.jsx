@@ -24,7 +24,7 @@ const page = () => {
   const [status , setStatus] = useState("")
   const TAKE = 10 ;
   const STATUS = {
-    1 : <FormattedMessage id="PENDING" /> ,
+    1 : <FormattedMessage id="Pending" /> ,
     2 : <FormattedMessage id="PROGRESS" /> ,
     3 : <FormattedMessage id="DONE" />
   

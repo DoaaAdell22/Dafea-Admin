@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Descriptions, Image } from 'antd';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams, useLocation ,useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FormattedMessage } from 'react-intl';
 const ShowPage = () => {
@@ -9,6 +10,8 @@ const ShowPage = () => {
   const [data, setData] = useState({});
   const params = useParams();
   const idToken = useSelector(state => state.Auth.idToken);
+  const navigate = useNavigate();
+  const [dynamic_links, setDynamic_links] = useState({});
 
   const TYPE = {
     1: "user",
@@ -16,9 +19,9 @@ const ShowPage = () => {
   };
 
   const STATUS = {
-    1 : <FormattedMessage id="PENDING " /> ,
-    2 : <FormattedMessage id="ACTIVE " /> ,
-    3 : <FormattedMessage id="BLOCKED " />
+    1 : <FormattedMessage id="PENDING" /> ,
+    2 : <FormattedMessage id="ACTIVE" /> ,
+    3 : <FormattedMessage id="BLOCKED" />
   } 
 
   const { index, type  } = location.state || {};
@@ -29,7 +32,10 @@ const ShowPage = () => {
       }
     })
     .then((res) => {
+
       setData(res.data.data);
+      setDynamic_links(res.data.data.dynamic_links)
+
     })
     .catch((error) => {
     });
@@ -73,10 +79,22 @@ const ShowPage = () => {
       span: 3,
       children:  TYPE[data.type] ?? "",
     },
+    {
+      key: '8',
+      label: <FormattedMessage id='Dynamic Link' />,
+      span: 3,
+      children:   <Link onClick={() => navigate(`/dashboard/dynamic-link/show/${dynamic_links.link_id}`)}>
+      <FormattedMessage id="show" />
+    </Link>
+,
+    }
   ];
 
   return (
     <div>
+    
+  <p>Status: {data.status}</p>
+
       <Descriptions bordered  layout="horizontal" items={items} />
     </div>
   );

@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
+import { debounce } from 'lodash';
 
 const page = () => {
 
@@ -28,12 +29,9 @@ const page = () => {
   const [search , setSearch] = useState('')
 
  
-  const onSearch = (value) => {
-
-    setSearch(value)
-    console.log(info?.source, value);
-
-  }
+  const onSearchChange = debounce((value) => {
+    setSearch(value);
+  }, 500);
   
   const TAKE = 10 ;
   const TYPE = {
@@ -42,9 +40,9 @@ const page = () => {
   }
 
   const STATUS = {
-    1 : <FormattedMessage id="PENDING " /> ,
-    2 : <FormattedMessage id="ACTIVE " /> ,
-    3 : <FormattedMessage id="BLOCKED " />
+    1 : <FormattedMessage id="PENDING" /> ,
+    2 : <FormattedMessage id="ACTIVE" /> ,
+    3 : <FormattedMessage id="BLOCKED" />
   } 
 
 
@@ -54,8 +52,10 @@ const requestMerchants = () => {
   const params = {
     take:TAKE,
     skip:(currentPage-1)*TAKE,
+    type : 2
   }
-  
+  params["filter[status]"] = "current";
+
   if(search){
     params["filter[search]"]=search
     
@@ -65,9 +65,7 @@ const requestMerchants = () => {
         Authorization:`Bearer ${idToken}`
         },
         params ,
-        params:{
-          type : 2
-        }
+        
   }).then((res)=>{
     console.log(res.data)
     setMerchants(res.data.data)
@@ -124,72 +122,73 @@ const requestMerchants = () => {
 
   // },
   {
-    title: <FormattedMessage id='actions' /> ,
-    dataIndex: 'action',
+    title: <FormattedMessage id="actions" />,
+    dataIndex: "action",
     render: (text, record, index) => (
-      <div className='flex gap-5 justify-center items-center'>
-      
-      <Button onClick={() => navigate(`/dashboard/clients/show/${record.id}`,  { 
-          })}><FormattedMessage id='show' /></Button>
-        {record.status === 1 ? (
-      <div className='flex gap-2'>
-        <Button loading={click1 === record.id} onClick={() => acceptHandler(record.id)}>
-          <FormattedMessage id='accept' />
+      <div className="flex gap-5 justify-center items-center">
+        <Button onClick={() => navigate(`/dashboard/current/show/${record.id}`)}>
+          <FormattedMessage id="show" />
         </Button>
-        <Button loading={click2 === record.id} onClick={() => rejectHandler(record.id)}>
-          <FormattedMessage id='reject' />
-        </Button>
+  
+        {record.status === 2 ? (
+          <Button
+            loading={click3 === record.id}
+            danger
+            onClick={() => blockHandler(record.id)}
+          >
+            <FormattedMessage id="block" />
+          </Button>
+        ) : (
+          <Button
+            loading={click4 === record.id}
+            danger
+            onClick={() => unblockHandler(record.id)}
+          >
+            <FormattedMessage id="unblock" />
+          </Button>
+        )}
       </div>
-    ) : (
-          record.status === 2 ?
-      <Button loading={click3 === record.id} danger onClick={() => blockHandler(record.id)}>
-        <FormattedMessage id='block' />
-      </Button> : <Button loading={click4 === record.id} danger onClick={() => unblockHandler(record.id)}>
-        <FormattedMessage id='unblock' />
-      </Button>
-    )}
-      </div>
-      
-    )
+    ),
   }
+  
 ];
 
 
-const acceptHandler = (id) => {
-  setLoading(true)
-  setClick1(id)
-  axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/accept`, {} , { 
-    headers : {
-      Authorization:`Bearer ${idToken}`
-      }})
-  .then((res)=>{ 
+// const acceptHandler = (id) => {
+//   setLoading(true)
+//   setClick1(id)
+//   axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/accept`, {} , { 
+//     headers : {
+//       Authorization:`Bearer ${idToken}`
+//       }})
+//   .then((res)=>{ 
 
-    message.success(res.data.message)
-    requestMerchants();
-    setLoading(false)
-    setClick1(null)
+//     message.success(res.data.message)
+//     requestMerchants();
+//     setLoading(false)
+//     setClick1(null)
 
-  })
-  .catch(() => {
-  });
-};
-const rejectHandler = (id) => {
-  setClick2(id)
-  axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/reject`, {} ,
-    {
-    headers: { Authorization: `Bearer ${idToken}` }
-  })
-  .then((res)=>{ 
-    message.success(res.data.message)
+//   })
+//   .catch(() => {
+//   });
+// };
+// const rejectHandler = (id) => {
+//   setClick2(id)
+//   axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/reject`, {} ,
+//     {
+//     headers: { Authorization: `Bearer ${idToken}` }
+//   })
+//   .then((res)=>{ 
+//     message.success(res.data.message)
 
-    requestMerchants();
-    setLoading(false)
-    const updatedClients = client.filter(client => client.id !== id);
-    setClient(updatedClients);
-  })
-  .catch(() => {
-  });
-};
+//     requestMerchants();
+//     setLoading(false)
+//     const updatedClients = client.filter(client => client.id !== id);
+//     setClient(updatedClients);
+//   })
+//   .catch(() => {
+//   });
+// };
 const blockHandler = (id) => {
   setClick3(id)
   axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/block`,  {} ,
@@ -223,7 +222,7 @@ const unblockHandler = (id) => {
   return (
     <div>
     
-      <h1><FormattedMessage id='merchants' /></h1>
+      <h1><FormattedMessage id='current' /></h1>
       <div className='flex gap-6 items-center justify-between my-5'>
         <Search
         placeholder={intl.formatMessage({ id: "search_placeholder" })}
@@ -233,8 +232,7 @@ const unblockHandler = (id) => {
         style={{
           width: 300,
         }}
-        onSearch={onSearch}
-      />
+        onChange={(e) => onSearchChange(e.target.value)}    />
       </div>
        <Table 
         columns={columns}

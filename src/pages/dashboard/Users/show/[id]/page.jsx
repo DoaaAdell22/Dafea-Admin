@@ -16,9 +16,9 @@ const ShowPage = () => {
   };
 
   const STATUS = {
-    1 : <FormattedMessage id="PENDING " /> ,
-    2 : <FormattedMessage id="ACTIVE " /> ,
-    3 : <FormattedMessage id="BLOCKED " />
+    1 : <FormattedMessage id="PENDING" /> ,
+    2 : <FormattedMessage id="ACTIVE" /> ,
+    3 : <FormattedMessage id="BLOCKED" />
   } 
 
   const { index, type  } = location.state || {};

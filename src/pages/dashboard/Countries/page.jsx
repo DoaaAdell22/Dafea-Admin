@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
+import { debounce } from 'lodash';
 
 const page = () => {
   const intl = useIntl();
@@ -27,12 +28,10 @@ const page = () => {
 
   const TAKE = 10 ;
 
-  const onSearch = (value) => {
-
-    setSearch(value)
-    console.log(info?.source, value);
-
-  }
+  const onSearchChange = debounce((value) => {
+    setSearch(value);
+  }, 500);
+  
 
 
 const request = () =>{
@@ -140,8 +139,7 @@ const deleteHandler = (id) => {
       style={{
         width: 300,
       }}
-      onSearch={onSearch}
-    />
+      onChange={(e) => onSearchChange(e.target.value)}    />
 
   
 
