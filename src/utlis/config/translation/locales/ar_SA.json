@@ -500,10 +500,11 @@
   "Commercial Record": "السجل تجاري",
   "business_informations": "معلومات الأعمال",
   "offer_price": "سعر العرض",
-  "Show Product": "عرض المنتج" ,
+  "Show Product": "عرض المنتج",
   "street_name": "اسم الشارع",
   "float_num": "رقم الطابق ",
-  "building_num": "رقم المبنى" ,
-  "user" : "مستخدم" ,
-  "merchant" : "تاجر" 
+  "building_num": "رقم المبنى",
+  "user": "مستخدم",
+  "merchant": "تاجر",
+  "active": "نشط"
 }

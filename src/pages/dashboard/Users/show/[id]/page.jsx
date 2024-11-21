@@ -65,16 +65,10 @@ const addresses = [
     {
       title: <FormattedMessage id='area'  />,
       dataIndex: 'area',
-      render: (text, record, index) => <Image src={text} width={80} height={80} />
       
     },
     
-    {
-      title: <FormattedMessage id='Expired Date'  />,
-      dataIndex: 'expired_date',
-      render: (text, record, index) => <div>{text}</div>
-      
-    },
+   
     
   ]
   

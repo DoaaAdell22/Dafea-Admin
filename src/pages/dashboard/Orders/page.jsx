@@ -127,12 +127,12 @@ const clientsRequest = () =>{
   {
     title: <FormattedMessage id='client_name' />,
     dataIndex: 'client_name',
-    render : (text , record) => <Link onClick={() => navigate(`/dashboard/clients/show/${record.id}`)}>{record.client_name}</Link>
+    render : (text , record) => <Link onClick={() => navigate(`/dashboard/Users/show/${record.client_id}`)}>{record.client_name}</Link>
   },
   {
     title: <FormattedMessage id='merchant_name' />,
     dataIndex: 'merchant_name',
-    render : (text , record) => <Link onClick={() => navigate(`/dashboard/clients/show/${record.id}`)}>{record.merchant_name}</Link>
+    render : (text , record) => <Link onClick={() => navigate(`/dashboard/current/show/${record.merchant_id}`)}>{record.merchant_name}</Link>
 
   },
   {
