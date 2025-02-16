@@ -23,6 +23,7 @@ import { TbUsersGroup } from "react-icons/tb";
 import { MdPendingActions } from "react-icons/md";
 import { MdIncompleteCircle } from "react-icons/md";
 import { BsClock } from "react-icons/bs";
+import { AiFillNotification } from "react-icons/ai";
 
 // Registrations
 
@@ -42,16 +43,16 @@ const getMenuItems: (profile) => MenuItem[] = (profile) =>{
   return [
  
   
-  {
-    key: "Users",
-    to: "Users",
-    label: <FormattedMessage id="Users" />,
-    icon: <FaUsers className="!text-xl" />,
-    disabled: false,
-  },
+  // {
+  //   key: "Users",
+  //   to: "Users",
+  //   label: <FormattedMessage id="Users" />,
+  //   icon: <FaUsers className="!text-xl" />,
+  //   disabled: false,
+  // },
   {
     key: "merchants",
-    label: <FormattedMessage id="merchants" />,
+    label: <FormattedMessage id="Clients" />,
     icon: <TbUsersGroup className="!text-xl" />,
     disabled: false,
     children : [
@@ -134,6 +135,14 @@ const getMenuItems: (profile) => MenuItem[] = (profile) =>{
     icon: <IoIosSettings className="!text-xl" />,
     disabled: false,
   },
+  {
+    key: "General-notification",
+    to: "General-notification",
+    label: <FormattedMessage id="General-notification" />,
+    icon: <AiFillNotification className="!text-xl" />,
+    disabled: false,
+  }, 
+   
   
   
   

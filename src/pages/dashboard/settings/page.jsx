@@ -12,15 +12,23 @@ const Page = () => {
     const navigate = useNavigate()
     const idToken = useSelector(state => state.Auth.idToken);
     const language = useSelector(state => state.LanguageSwitcher.language);
+    const [loading, setLoading] = useState(false);
 
    const update = () =>{
+    setLoading(true)
     axios.post("https://dafeaa-backend.deplanagency.com/api/admin/settings" , values ,
         { headers : {
         Authorization:`Bearer ${idToken}`
         }}
     ).then((res) => {
       message.success(res.data.message)
-    }).catch(()=>{})
+      setLoading(false)
+
+    }).catch((error)=>{
+      message.error(res.data.message)
+      setLoading(false)
+
+    })
    }
 
     const request = () => {
@@ -92,7 +100,7 @@ const Page = () => {
           <Input />
         </Form.Item>
         <Form.Item className='text-center' >
-      <Button className='px-8' type="primary" size='large' htmlType="submit">
+      <Button loading={loading} className='px-8' type="primary" size='large' htmlType="submit">
         <FormattedMessage id='edit' />
       </Button>
     </Form.Item>

@@ -52,7 +52,7 @@ const requestMerchants = () => {
   const params = {
     take:TAKE,
     skip:(currentPage-1)*TAKE,
-    type : 2
+    // type : 2
   }
   params["filter[status]"] = "uncompleted";
 
