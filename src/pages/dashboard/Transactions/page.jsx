@@ -32,12 +32,14 @@ const page = () => {
 
 
   const STATUS = {
-    1 : "Initial " ,
-    2 : "Pending  " ,
-    3 : "Success " ,
-    4 : "Fail" ,
-    5 : "Close " ,
+    "INITIATED" : <FormattedMessage id='INITIATED' /> ,
+    "CAPTURED" :<FormattedMessage id='CAPTURED' />,
+    "SUCCESS" : <FormattedMessage id='SUCCESS' /> ,
+    "FAIL" : <FormattedMessage id='FAIL' /> ,
+    "CLOSE" : <FormattedMessage id='CLOSE' /> ,
   }
+
+
   
 const request = () =>{
     const params = {
@@ -88,7 +90,7 @@ const clientRequest = () =>{
         Authorization:`Bearer ${idToken}`
         },
         params:{
-          type : 1
+          // type : 1
         }
   }).then((res)=>{
     setClients(res.data.data)

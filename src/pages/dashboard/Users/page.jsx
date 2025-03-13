@@ -27,6 +27,7 @@ const page = () => {
   const [click3 , setClick3] = useState(null)
   const [click4 , setClick4] = useState(null)
   const [search , setSearch] = useState('')
+  const [status , setStatus] = useState("")
 
   const onSearchChange = debounce((value) => {
     setSearch(value);
@@ -39,7 +40,6 @@ const page = () => {
   }
 
   const STATUS = {
-    1 : <FormattedMessage id="PENDING" /> ,
     2 : <FormattedMessage id="active" /> ,
     3 : <FormattedMessage id="BLOCKED" />
   } 
@@ -50,11 +50,16 @@ const requestUsers = () => {
   const params = {
     take:TAKE,
     skip:(currentPage-1)*TAKE,
-    type : 1
+    // type : 1
   }
   
   if(search){
     params["filter[search]"]=search
+    
+  }
+  if(status){
+    params.status=status
+
     
   }
   
@@ -79,7 +84,7 @@ const requestUsers = () => {
    
     requestUsers()
 
-  },[currentPage ,type ,search ])
+  },[currentPage ,type ,search , status])
   
   const columns = [
 
@@ -145,39 +150,6 @@ const requestUsers = () => {
 ];
 
 
-// const acceptHandler = (id) => {
-//   setLoading(true)
-//   setClick1(id)
-//   axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/accept`, {} , { 
-//     headers : {
-//       Authorization:`Bearer ${idToken}`
-//       }})
-//   .then((res)=>{ 
-
-//     message.success(res.data.message)
-//     setLoading(false)
-//     setClick1(null)
-
-//   })
-//   .catch(() => {
-//   });
-// };
-// const rejectHandler = (id) => {
-//   setClick2(id)
-//   axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/reject`, {} ,
-//     {
-//     headers: { Authorization: `Bearer ${idToken}` }
-//   })
-//   .then((res)=>{ 
-//     message.success(res.data.message)
-
-//     setLoading(false)
-//     const updatedClients = users.filter(users => users.id !== id);
-//     setClient(updatedClients);
-//   })
-//   .catch(() => {
-//   });
-// };
 const blockHandler = (id) => {
   setClick3(id)
   axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/block`,  {} ,
@@ -208,19 +180,33 @@ const unblockHandler = (id) => {
   });
 };
 
+const statusChange = (value) => {
+  setStatus(value);
+};
+
   return (
     <div>
     <h1><FormattedMessage id='Users' /></h1>
     <div className='flex gap-6 items-end justify-between my-5'>
-      <Search
-      placeholder={intl.formatMessage({ id: "search_placeholder" })}
-      allowClear
-      enterButton= {<FormattedMessage id='search' />}
-      size="large"
-      style={{
-        width: 300,
-      }}
-      onChange={(e) => onSearchChange(e.target.value)}    />
+     
+      <Select
+          style={{ width: 150, marginLeft: 10 }}
+          placeholder={intl.formatMessage({id:"Select_Status"})}
+          onChange={statusChange}
+          allowClear
+        >
+          <Select.Option value="2"> <FormattedMessage id='active' /></Select.Option>
+          <Select.Option value="3"> <FormattedMessage id='BLOCKED' /> </Select.Option>
+        </Select>
+        <Search
+        placeholder={intl.formatMessage({ id: "search_placeholder" })}
+        allowClear
+        enterButton= {<FormattedMessage id='search' />}
+        size="large"
+        style={{
+          width: 300,
+        }}
+        onChange={(e) => onSearchChange(e.target.value)}    />
     </div>
        <Table scroll={{ x: 500 }} 
         columns={columns}

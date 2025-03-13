@@ -154,9 +154,9 @@ const clientsRequest = () =>{
     dataIndex: 'delivery_price',
   },
   {
-    title: <FormattedMessage id='tax_price' />,
-    dataIndex: 'tax_price',
-    render : (text , record) => record.tax_price + ` (${record.tax_ratio}%)`
+    title: <FormattedMessage id='commission' />,
+    dataIndex: 'commission',
+    render : (text , record) => record.commission + ` (${record.commission}%)`
   },
   {
     title: <FormattedMessage id='total_price' />,

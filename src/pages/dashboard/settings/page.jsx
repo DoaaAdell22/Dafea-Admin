@@ -99,6 +99,69 @@ const Page = () => {
         >
           <Input />
         </Form.Item>
+        <Form.Item 
+          label=<FormattedMessage id='google_play' /> 
+          name="google_play"
+          rules={[{ required: true, message: 'This field is required' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item 
+          label=<FormattedMessage id='app_store' /> 
+          name="app_store"
+          rules={[{ required: true, message: 'This field is required' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item 
+          label=<FormattedMessage id='app_gallery' /> 
+          name="app_gallery"
+          rules={[{ required: true, message: 'This field is required' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item 
+          label=<FormattedMessage id='facebook' /> 
+          name="facebook"
+          rules={[{ required: true, message: 'This field is required' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item 
+          label=<FormattedMessage id='twitter' /> 
+          name="twitter"
+          rules={[{ required: true, message: 'This field is required' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item 
+          label=<FormattedMessage id='snapchat' /> 
+          name="snapchat"
+          rules={[{ required: true, message: 'This field is required' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item 
+          label=<FormattedMessage id='instagram' /> 
+          name="instagram"
+          rules={[{ required: true, message: 'This field is required' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item 
+          label=<FormattedMessage id='commission_ratio' /> 
+          name="commission_ratio"
+          rules={[{ required: true, message: 'This field is required' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item 
+          label=<FormattedMessage id='max_commission_value' /> 
+          name="max_commission_value"
+          rules={[{ required: true, message: 'This field is required' }]}
+        >
+          <Input />
+        </Form.Item>
         <Form.Item className='text-center' >
       <Button loading={loading} className='px-8' type="primary" size='large' htmlType="submit">
         <FormattedMessage id='edit' />

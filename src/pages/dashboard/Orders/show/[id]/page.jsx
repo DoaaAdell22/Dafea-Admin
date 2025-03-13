@@ -27,6 +27,12 @@ const ShowPage = () => {
     3 : <FormattedMessage id='PAYMENT_REFUND' /> ,
   }
 
+
+  const STATUS_LABEL = {
+    1: <span style={{ color: "green", fontWeight: "bold" }}>ACTIVE</span>,
+    2: <span style={{ color: "red", fontWeight: "bold" }}>STOPPED</span>,
+  };
+
   const {  order_status , payment_status } = location.state || {};
   useEffect(() => {
     axios.get(`https://dafeaa-backend.deplanagency.com/api/admin/orders/${params.id}`, {
@@ -114,16 +120,22 @@ const ShowPage = () => {
       children: data.delivery_price,
     },
     {
-      key: 'tax_price',
-      label: <FormattedMessage id='tax_price' />,
+      key: 'commission',
+      label: <FormattedMessage id='commission' />,
       span: 3,
-      children: data.tax_price,
+      children: data.commission,
     },
     {
       key: 'total_price',
       label: <FormattedMessage id='total_price' />,
       span: 3,
       children: data.total_price,
+    },
+    {
+      key: "status",
+      label: <FormattedMessage id="status" />,
+      span: 3,
+      children: STATUS_LABEL[data.status] ?? "",
     },
     {
       key: 'product',

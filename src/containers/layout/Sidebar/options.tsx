@@ -24,6 +24,9 @@ import { MdPendingActions } from "react-icons/md";
 import { MdIncompleteCircle } from "react-icons/md";
 import { BsClock } from "react-icons/bs";
 import { AiFillNotification } from "react-icons/ai";
+import { FiUsers } from "react-icons/fi";
+import { IoDocumentsOutline } from "react-icons/io5";
+import { TbTransform } from "react-icons/tb";
 
 // Registrations
 
@@ -51,32 +54,26 @@ const getMenuItems: (profile) => MenuItem[] = (profile) =>{
   //   disabled: false,
   // },
   {
-    key: "merchants",
+    key: "Users",
     label: <FormattedMessage id="Clients" />,
     icon: <TbUsersGroup className="!text-xl" />,
     disabled: false,
     children : [
       {
-        key: "current",
-      to: "current",
-      label: <FormattedMessage id="current" />,
-      icon: <BsClock className="!text-xl" />,
+        key: "Users",
+      to: "Users",
+      label: <FormattedMessage id="Users" />,
+      icon: <FiUsers className="!text-xl" />,
       disabled: false,
       },
       {
-        key: "pending",
-      to: "pending",
-      label: <FormattedMessage id="Pending" />,
-      icon: <MdPendingActions className="!text-xl" />,
+        key: "business-info-files",
+      to: "business-info-files",
+      label: <FormattedMessage id="Documentation-files" />,
+      icon: <IoDocumentsOutline className="!text-xl" />,
       disabled: false,
       },
-      {
-        key: "Uncompleted",
-      to: "Uncompleted",
-      label: <FormattedMessage id="Uncompleted" />,
-      icon: <MdIncompleteCircle className="!text-xl" />,
-      disabled: false,
-      },
+      
     ]
   },
   {
@@ -93,13 +90,13 @@ const getMenuItems: (profile) => MenuItem[] = (profile) =>{
     icon: <FaTreeCity className="!text-xl" />,
     disabled: false,
   },
-  {
-    key: "Subscription-Plan",
-    to: "Subscription-Plan",
-    label: <FormattedMessage id="Subscription-Plan" />,
-    icon: <MdOutlineNextPlan className="!text-xl" />,
-    disabled: false,
-  },
+  // {
+  //   key: "Subscription-Plan",
+  //   to: "Subscription-Plan",
+  //   label: <FormattedMessage id="Subscription-Plan" />,
+  //   icon: <MdOutlineNextPlan className="!text-xl" />,
+  //   disabled: false,
+  // },
   {
     key: "Withdraws",
     to: "Withdraws",
@@ -119,6 +116,13 @@ const getMenuItems: (profile) => MenuItem[] = (profile) =>{
     to: "Orders",
     label: <FormattedMessage id="Orders" />,
     icon: <AiOutlineFileText className="!text-xl" />,
+    disabled: false,
+  },
+  {
+    key: "transformed-order",
+    to: "transformed-order",
+    label: <FormattedMessage id="Transformed-order" />,
+    icon: <TbTransform className="!text-xl" />,
     disabled: false,
   },
   {

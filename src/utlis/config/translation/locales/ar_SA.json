@@ -520,5 +520,22 @@
   "Select user": "حدد المستخدم",
   "message_en": "رسالة (بالانجليزية)",
   "Message_Ar": "رسالة (بالعربية)",
-  "General-notification": "إشعار عام"
+  "General-notification": "إشعار عام",
+  "business-info-files": "ملفات معلومات الأعمال",
+  "expired_date": "تاريخ انتهاء صلاحيته",
+  "commercial_record": "سجل تجاري",
+  "Accept": "قبول",
+  "reject": "رفض",
+  "Documentation-files": "ملفات الوثائق",
+  "commission_ratio": "نسبة العمولة",
+  "instagram": "انستجرام",
+  "snapchat": "سناب شات",
+  "twitter": "تويتر",
+  "facebook": "فيسبوك",
+  "max_commission_value": "أقصى قيمة اللجنة",
+  "commission": "عمولة",
+  "Transformed-order": "ترتيب تحول",
+  "order-id": "معرف الطلب",
+  "tranformed": "تم التحويل",
+  "not-tranformed": "لم يتم التحويل"
 }
