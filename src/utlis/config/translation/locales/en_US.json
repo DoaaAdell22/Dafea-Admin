@@ -543,5 +543,11 @@
   "order-id": "Order id",
   "tranformed": "Tranformed",
   "not-tranformed": "Not Tranformed",
-  "is_transformed": "Is Transformed"
+  "is_transformed": "Is Transformed",
+  "INITIATED": "INITIATED",
+  "CAPTURED": "CAPTURED",
+  "refunded": "refunded",
+  "canceled": "canceled",
+  "on_hold": "on hold",
+  "expired": "expired"
 }

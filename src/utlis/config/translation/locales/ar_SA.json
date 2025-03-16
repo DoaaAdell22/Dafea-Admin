@@ -538,5 +538,11 @@
   "order-id": "معرف الطلب",
   "tranformed": "تم التحويل",
   "not-tranformed": "لم يتم التحويل",
-  "is_transformed": "تحول"
+  "is_transformed": "تحول",
+  "INITIATED": "بدأ",
+  "CAPTURED": "تم القبض عليه",
+  "refunded": "رد",
+  "canceled": "ألغى",
+  "on_hold": "في الانتظار",
+  "expired": "منتهي الصلاحية"
 }

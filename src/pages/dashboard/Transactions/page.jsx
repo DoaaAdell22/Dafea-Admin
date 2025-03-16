@@ -32,16 +32,18 @@ const page = () => {
 
 
   const STATUS = {
-    1 : <FormattedMessage id='INITIATED' /> ,
-    2 :<FormattedMessage id='CAPTURED' />,
-    3 : <FormattedMessage id='SUCCESS' /> ,
-    4 : <FormattedMessage id='FAIL' /> ,
-    5 : <FormattedMessage id='CLOSE' /> ,
+    "INITIATED" : <FormattedMessage id='INITIATED' /> ,
+    "CAPTURED" :<FormattedMessage id='CAPTURED' />,
+    "refunded" : <FormattedMessage id='refunded' /> ,
+    "canceled" : <FormattedMessage id='canceled' /> ,
+    "on_hold" : <FormattedMessage id='on_hold' /> ,
+    "expired" : <FormattedMessage id='expired' /> ,
   }
 
 
   
 const request = () =>{
+
     const params = {
         take:TAKE,
         skip:(currentPage-1)*TAKE,
@@ -69,7 +71,8 @@ const request = () =>{
       }
 
       console.log(params)
-  
+      setLoading(true)
+
     axios.get("https://dafeaa-backend.deplanagency.com/api/admin/transactions" ,{
         headers : {
             Authorization:`Bearer ${idToken}`
@@ -79,12 +82,14 @@ const request = () =>{
         console.log(res.data)
         setTransactions(res.data.data)
         setTotal(res.data.count)
-        setLoading(false)
     
-      }).catch(()=>{})
+      }).catch(()=>{}).finally(()=>{
+        setLoading(false)
+      })
 }
 
 const clientRequest = () =>{
+
   axios.get("https://dafeaa-backend.deplanagency.com/api/admin/clients" ,{
     headers : {
         Authorization:`Bearer ${idToken}`
@@ -94,20 +99,22 @@ const clientRequest = () =>{
         }
   }).then((res)=>{
     setClients(res.data.data)
-    setLoading(false)
 
   }).catch(()=>{}) 
 }
 
   useEffect(()=>{
     
-    setLoading(true)
 
     
     request();
-    clientRequest();
 
   },[currentPage ,from  , to , status , client_id   ])
+
+  useEffect(()=>{
+    clientRequest();
+
+  } ,[])
 
   const columns = [
 
@@ -166,11 +173,14 @@ const clientId = (value) => {
     onChange={statusChange}
     allowClear
   >
-    <Select.Option value="1"><FormattedMessage id='INITIAL' /></Select.Option>
-    <Select.Option value="2"> <FormattedMessage id='PENDING' /></Select.Option>
-    <Select.Option value="3"> <FormattedMessage id='SUCCESS' /> </Select.Option>
-    <Select.Option value="4"> <FormattedMessage id='FAIL' /></Select.Option>
-    <Select.Option value="5"> <FormattedMessage id='CLOSE' /></Select.Option>
+    <Select.Option value="INITIATED"><FormattedMessage id='INITIATED' /></Select.Option>
+    <Select.Option value="CAPTURED"> <FormattedMessage id='CAPTURED' /></Select.Option>
+    <Select.Option value="refunded"> <FormattedMessage id='refunded' /> </Select.Option>
+    <Select.Option value="canceled"> <FormattedMessage id='canceled' /></Select.Option>
+    <Select.Option value="on_hold"> <FormattedMessage id='on_hold' /></Select.Option>
+    <Select.Option value="expired"> <FormattedMessage id='expired' /></Select.Option>
+
+  
   </Select>
     <Select
     style={{ width: 150, marginLeft: 10 }}

@@ -33,10 +33,7 @@ const ShowPage = () => {
        }   
 
 
-  const STATUS_LABEL = {
-    1: <span style={{ color: "green", fontWeight: "bold" }}>ACTIVE</span>,
-    2: <span style={{ color: "red", fontWeight: "bold" }}>STOPPED</span>,
-  };
+  
 
   const {  order_status , payment_status } = location.state || {};
   useEffect(() => {
