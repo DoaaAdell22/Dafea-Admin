@@ -105,12 +105,12 @@ const addresses = [
       span: 3,
       children: STATUS[data.status]??'' ,
     },
-    {
-      key: '7',
-      label: <FormattedMessage id='type' />,
-      span: 3,
-      children:  TYPE[data.type] ?? "",
-    },
+    // {
+    //   key: '7',
+    //   label: <FormattedMessage id='type' />,
+    //   span: 3,
+    //   children:  TYPE[data.type] ?? "",
+    // },
     {
       key: '8',
       label: <FormattedMessage id='addresses' />,

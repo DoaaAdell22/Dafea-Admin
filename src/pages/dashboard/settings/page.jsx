@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'antd';
+import { InputNumber, Table } from 'antd';
 import axios from 'axios';
 import { useSelector } from "react-redux";
 import { message , Button , Form , Input} from 'antd';
@@ -153,14 +153,14 @@ const Page = () => {
           name="commission_ratio"
           rules={[{ required: true, message: 'This field is required' }]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item 
           label=<FormattedMessage id='max_commission_value' /> 
           name="max_commission_value"
           rules={[{ required: true, message: 'This field is required' }]}
         >
-          <Input />
+          <InputNumber />
         </Form.Item>
         <Form.Item className='text-center' >
       <Button loading={loading} className='px-8' type="primary" size='large' htmlType="submit">

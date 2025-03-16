@@ -2,7 +2,6 @@ import { Image, Select, Table , Button , Input, message} from 'antd';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from "react-redux";
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
 import { debounce } from 'lodash';
@@ -11,7 +10,6 @@ const page = () => {
 
   const intl = useIntl();
 
-  const navigate = useNavigate()
 
   const language = useSelector(state => state.LanguageSwitcher.language);
   const idToken = useSelector(state => state.Auth.idToken);
@@ -134,6 +132,7 @@ const acceptHandler = (id) => {
       Authorization:`Bearer ${idToken}`
       }})
   .then((res)=>{ 
+    requestFiles()
 
     message.success(res.data.message)
     setLoading(false)
@@ -150,6 +149,7 @@ const rejectHandler = (id) => {
     headers: { Authorization: `Bearer ${idToken}` }
   })
   .then((res)=>{ 
+    requestFiles()
     message.success(res.data.message)
 
     setLoading(false)

@@ -27,6 +27,11 @@ const ShowPage = () => {
     3 : <FormattedMessage id='PAYMENT_REFUND' /> ,
   }
 
+  const transformedStatus  = {
+        0 : <FormattedMessage id='tranformed' /> ,
+        1 : <FormattedMessage id='not-tranformed' />
+       }   
+
 
   const STATUS_LABEL = {
     1: <span style={{ color: "green", fontWeight: "bold" }}>ACTIVE</span>,
@@ -108,6 +113,12 @@ const ShowPage = () => {
       children: PAYMENTSTATUS[data.payment_status] ?? "",
     },
     {
+      key: 'is_transformed',
+      label: <FormattedMessage id='is_transformed' />,
+      span: 3,
+      children: transformedStatus[data.is_transformed] ?? "",
+    },
+    {
       key: 'order_price',
       label: <FormattedMessage id='order_price' />,
       span: 3,
@@ -130,6 +141,12 @@ const ShowPage = () => {
       label: <FormattedMessage id='total_price' />,
       span: 3,
       children: data.total_price,
+    },
+    {
+      key: 'address',
+      label: <FormattedMessage id='address' />,
+      span: 3,
+      children: data.address,
     },
     {
       key: "status",

@@ -542,5 +542,6 @@
   "Transformed-order": "Transformed Order",
   "order-id": "Order id",
   "tranformed": "Tranformed",
-  "not-tranformed": "Not Tranformed"
+  "not-tranformed": "Not Tranformed",
+  "is_transformed": "Is Transformed"
 }

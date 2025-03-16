@@ -32,11 +32,11 @@ const page = () => {
 
 
   const STATUS = {
-    "INITIATED" : <FormattedMessage id='INITIATED' /> ,
-    "CAPTURED" :<FormattedMessage id='CAPTURED' />,
-    "SUCCESS" : <FormattedMessage id='SUCCESS' /> ,
-    "FAIL" : <FormattedMessage id='FAIL' /> ,
-    "CLOSE" : <FormattedMessage id='CLOSE' /> ,
+    1 : <FormattedMessage id='INITIATED' /> ,
+    2 :<FormattedMessage id='CAPTURED' />,
+    3 : <FormattedMessage id='SUCCESS' /> ,
+    4 : <FormattedMessage id='FAIL' /> ,
+    5 : <FormattedMessage id='CLOSE' /> ,
   }
 
 
@@ -127,7 +127,7 @@ const clientRequest = () =>{
   {
     title: <FormattedMessage id='status' />,
     dataIndex: 'status',
-    render : (text ,record) => STATUS[text] ?? ""
+    render : (text ,record) => STATUS[text] ?? text
   },
   {
     title: <FormattedMessage id='client_name' />,

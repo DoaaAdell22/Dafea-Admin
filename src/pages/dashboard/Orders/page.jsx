@@ -39,6 +39,12 @@ const page = () => {
     2 : <FormattedMessage id='PAYMENT_DONE' />  ,
     3 : <FormattedMessage id='PAYMENT_REFUND' /> ,
   }
+
+
+   const transformedStatus  = {
+      0 : <FormattedMessage id='tranformed' /> ,
+      1 : <FormattedMessage id='not-tranformed' />
+     }     
   
 const request = () =>{
     const params = {
@@ -144,6 +150,12 @@ const clientsRequest = () =>{
     title: <FormattedMessage id='payment_status' /> ,
     dataIndex: 'payment_status',
     render : (text , record) => PAYMENTSTATUS[text]?? ''
+  },
+  {
+    title: <FormattedMessage id='is_transformed' />,
+    dataIndex: 'is_transformed',
+    render : (text , record) => transformedStatus[text]?? ''
+
   },
   {
     title: <FormattedMessage id='order_price' />,

@@ -537,5 +537,6 @@
   "Transformed-order": "ترتيب تحول",
   "order-id": "معرف الطلب",
   "tranformed": "تم التحويل",
-  "not-tranformed": "لم يتم التحويل"
+  "not-tranformed": "لم يتم التحويل",
+  "is_transformed": "تحول"
 }

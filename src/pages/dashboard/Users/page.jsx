@@ -58,7 +58,7 @@ const requestUsers = () => {
     
   }
   if(status){
-    params.status=status
+    params["filter[status]"]=status
 
     
   }
@@ -152,7 +152,7 @@ const requestUsers = () => {
 
 const blockHandler = (id) => {
   setClick3(id)
-  axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/block`,  {} ,
+  axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}`,  {} ,
     {
     headers: { Authorization: `Bearer ${idToken}` }
   })
@@ -162,12 +162,16 @@ const blockHandler = (id) => {
     setLoading(false)
     setClick3(null)
   })
-  .catch(() => {
+  .catch((err) => {
+    message.err(err.data.message)
+    setLoading(false)
+
+
   });
 };
 const unblockHandler = (id) => {
   setClick4(id);
-  axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}/unblock`, {}, {
+  axios.put(`https://dafeaa-backend.deplanagency.com/api/admin/clients/${id}`, {}, {
     headers: { Authorization: `Bearer ${idToken}` }
   })
   .then((res) => {
@@ -176,7 +180,9 @@ const unblockHandler = (id) => {
     setLoading(false);
     setClick4(null);
   })
-  .catch(() => {
+  .catch((err) => {
+    message.err(err.data.message)
+    setLoading(false)
   });
 };
 
