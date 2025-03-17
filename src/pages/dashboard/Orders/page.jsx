@@ -88,27 +88,13 @@ const request = () =>{
       })
 }
 
-const merchantRequest = () =>{
-  axios.get("https://dafeaa-backend.deplanagency.com/api/admin/clients" ,{
-    headers : {
-        Authorization:`Bearer ${idToken}`
-        },
-        params : {
-          type : 2
-        }
-  }).then((res)=>{
-    setMerchants(res.data.data)
 
-  }).catch(()=>{}) 
-}
 const clientsRequest = () =>{
   axios.get("https://dafeaa-backend.deplanagency.com/api/admin/clients" ,{
     headers : {
         Authorization:`Bearer ${idToken}`
         },
-        params:{
-          type : 1
-        }
+
   }).then((res)=>{
     setClients(res.data.data)
 
@@ -124,7 +110,6 @@ const clientsRequest = () =>{
   },[currentPage, merchantId, orderStatus, client_id ])
   useEffect(()=>{
     
-    merchantRequest()
     clientsRequest()
     
   
@@ -145,7 +130,7 @@ const clientsRequest = () =>{
   {
     title: <FormattedMessage id='merchant_name' />,
     dataIndex: 'merchant_name',
-    render : (text , record) => <Link onClick={() => navigate(`/dashboard/current/show/${record.merchant_id}`)}>{record.merchant_name}</Link>
+    render : (text , record) => <Link onClick={() => navigate(`/dashboard/Users/show/${record.merchant_id}`)}>{record.merchant_name}</Link>
 
   },
   {
