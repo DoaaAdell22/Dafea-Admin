@@ -34,10 +34,7 @@ const page = () => {
   const STATUS = {
     "INITIATED" : <FormattedMessage id='INITIATED' /> ,
     "CAPTURED" :<FormattedMessage id='CAPTURED' />,
-    "refunded" : <FormattedMessage id='refunded' /> ,
-    "canceled" : <FormattedMessage id='canceled' /> ,
-    "on_hold" : <FormattedMessage id='on_hold' /> ,
-    "expired" : <FormattedMessage id='expired' /> ,
+    "DECLINED" : <FormattedMessage id='DECLINED' /> ,
   }
 
 
@@ -105,7 +102,6 @@ const clientRequest = () =>{
 
   useEffect(()=>{
     
-
     
     request();
 
@@ -134,7 +130,7 @@ const clientRequest = () =>{
   {
     title: <FormattedMessage id='status' />,
     dataIndex: 'status',
-    render : (text ,record) => STATUS[text] ?? text
+    render : (text ,record) => STATUS[text] ?? ""
   },
   {
     title: <FormattedMessage id='client_name' />,
@@ -175,10 +171,7 @@ const clientId = (value) => {
   >
     <Select.Option value="INITIATED"><FormattedMessage id='INITIATED' /></Select.Option>
     <Select.Option value="CAPTURED"> <FormattedMessage id='CAPTURED' /></Select.Option>
-    <Select.Option value="refunded"> <FormattedMessage id='refunded' /> </Select.Option>
-    <Select.Option value="canceled"> <FormattedMessage id='canceled' /></Select.Option>
-    <Select.Option value="on_hold"> <FormattedMessage id='on_hold' /></Select.Option>
-    <Select.Option value="expired"> <FormattedMessage id='expired' /></Select.Option>
+    <Select.Option value="DECLINED"> <FormattedMessage id='DECLINED' /> </Select.Option>
 
   
   </Select>

@@ -6,7 +6,7 @@ import { message , Button , Form , Input} from 'antd';
 import {  useNavigate } from 'react-router-dom';
 import { useForm } from 'antd/es/form/Form';
 import { FormattedMessage } from 'react-intl';
-import { values } from '@ant-design/plots/es/core/utils';
+import TextEditor from '../TextEditor/TextEditor.tsx';
 const Page = () => {
     const [form] = useForm()
     const navigate = useNavigate()
@@ -14,7 +14,7 @@ const Page = () => {
     const language = useSelector(state => state.LanguageSwitcher.language);
     const [loading, setLoading] = useState(false);
 
-   const update = () =>{
+   const update = (values) =>{
     setLoading(true)
     axios.post("https://dafeaa-backend.deplanagency.com/api/admin/settings" , values ,
         { headers : {
@@ -60,10 +60,11 @@ const Page = () => {
         name="basic"
         layout='vertical'
         form={form}
-        style={{ width: '100%' }}
+        style={{ width: '100%'  }}
         initialValues={{ remember: true }}
         onFinish={update}
-        autoComplete="off">
+        autoComplete="off"
+        className="font-bold text-lg" >
         <Form.Item 
           label=<FormattedMessage id='contact_phone' /> 
           name="contact_phone"
@@ -78,20 +79,7 @@ const Page = () => {
         >
           <Input  />
         </Form.Item>
-        <Form.Item 
-          label=<FormattedMessage id='about_en' /> 
-          name="about_en"
-          rules={[{ required: true, message: 'This field is required' }]}
-        >
-          <Input.TextArea />
-        </Form.Item>
-        <Form.Item 
-          label=<FormattedMessage id='about_ar' /> 
-          name="about_ar"
-          rules={[{ required: true, message: 'This field is required' }]}
-        >
-          <Input.TextArea />
-        </Form.Item>
+       
         <Form.Item 
           label=<FormattedMessage id='whatsapp_num' /> 
           name="whatsapp_num"
@@ -153,15 +141,84 @@ const Page = () => {
           name="commission_ratio"
           rules={[{ required: true, message: 'This field is required' }]}
         >
-          <InputNumber />
+          <InputNumber  style={{ width: "100%" }} />
         </Form.Item>
         <Form.Item 
           label=<FormattedMessage id='max_commission_value' /> 
           name="max_commission_value"
           rules={[{ required: true, message: 'This field is required' }]}
-        >
-          <InputNumber />
+          >
+          <InputNumber  style={{ width: "100%" }}  />
         </Form.Item>
+        <Form.Item
+        label={<FormattedMessage id="about_en" />}
+        name="about_en"
+        rules={[{ required: true, message: "This field is required" }]}
+      >
+        <TextEditor
+          value={form.getFieldValue("about_en")} 
+          onChange={(value) => form.setFieldsValue({ about_en: value })} 
+          placeholder="Enter About in English"
+        />
+      </Form.Item>
+              <Form.Item
+        label={<FormattedMessage id="about_ar" />}
+        name="about_ar"
+        rules={[{ required: true, message: "This field is required" }]}
+      >
+        <TextEditor
+          value={form.getFieldValue("about_ar")} 
+          onChange={(value) => form.setFieldsValue({ about_ar: value })} 
+          placeholder="Enter About in Arabic"
+          />
+      </Form.Item>
+              <Form.Item
+        label={<FormattedMessage id="privacy_en" />}
+        name="privacy_en"
+        rules={[{ required: true, message: "This field is required" }]}
+      >
+        <TextEditor
+          value={form.getFieldValue("privacy_en")} 
+          onChange={(value) => form.setFieldsValue({ privacy_en: value })} 
+          placeholder="Enter About in English"
+      
+        />
+      </Form.Item>
+      
+              <Form.Item 
+                label=<FormattedMessage id='privacy_ar' /> 
+                name="privacy_ar"
+                rules={[{ required: true, message: 'This field is required' }]}
+              >
+              <TextEditor
+              value={form.getFieldValue("privacy_ar")} 
+              onChange={(value) => form.setFieldsValue({ privacy_ar: value })} 
+              placeholder="Enter About in Arabic"
+            />        
+            </Form.Item>
+              <Form.Item
+        label={<FormattedMessage id="terms_en" />}
+        name="terms_en"
+        rules={[{ required: true, message: "This field is required" }]}
+      >
+        <TextEditor
+          value={form.getFieldValue("terms_en")} 
+          onChange={(value) => form.setFieldsValue({ terms_en: value })} 
+          placeholder="Enter About in English"
+        />
+      </Form.Item>
+      
+              <Form.Item 
+                label=<FormattedMessage id='terms_ar' /> 
+                name="terms_ar"
+                rules={[{ required: true, message: 'This field is required' }]}
+              >
+              <TextEditor
+              value={form.getFieldValue("terms_ar")} 
+              onChange={(value) => form.setFieldsValue({ terms_ar: value })} 
+              placeholder="Enter About in Arabic"
+            />        
+            </Form.Item>
         <Form.Item className='text-center' >
       <Button loading={loading} className='px-8' type="primary" size='large' htmlType="submit">
         <FormattedMessage id='edit' />

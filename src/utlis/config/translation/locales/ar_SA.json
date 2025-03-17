@@ -544,5 +544,10 @@
   "refunded": "رد",
   "canceled": "ألغى",
   "on_hold": "في الانتظار",
-  "expired": "منتهي الصلاحية"
+  "expired": "منتهي الصلاحية",
+  "DECLINED": "منخفض",
+  "privacy_en": "الخصوصية (EN)",
+  "privacy_ar": "الخصوصية (AR)",
+  "terms_en": "الشروط (en)",
+  "terms_ar": "المصطلحات (AR)"
 }

@@ -549,5 +549,10 @@
   "refunded": "refunded",
   "canceled": "canceled",
   "on_hold": "on hold",
-  "expired": "expired"
+  "expired": "expired",
+  "DECLINED": "DECLINED",
+  "privacy_en": "Privacy (En)",
+  "privacy_ar": "Privacy (Ar)",
+  "terms_en": "Terms (En)",
+  "terms_ar": "Terms (Ar)"
 }
