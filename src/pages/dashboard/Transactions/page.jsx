@@ -57,12 +57,13 @@ const request = () =>{
         
       }
       if(status){
-        params.status=status
+        params["filter[status]"] = status;
 
         
       }
       if(client_id){
-        params.client_id=client_id
+        params["filter[client_id]"] = client_id;
+
 
         
       }
