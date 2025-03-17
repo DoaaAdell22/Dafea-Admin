@@ -32,7 +32,7 @@ const ShowPage = () => {
         1 : <FormattedMessage id='not-tranformed' />
        }   
 
-
+        
   
 
   const {  order_status , payment_status } = location.state || {};
@@ -145,12 +145,7 @@ const ShowPage = () => {
       span: 3,
       children: data.address,
     },
-    {
-      key: "status",
-      label: <FormattedMessage id="status" />,
-      span: 3,
-      children: STATUS_LABEL[data.status] ?? "",
-    },
+  
     {
       key: 'product',
       label: <FormattedMessage id="Product" />,

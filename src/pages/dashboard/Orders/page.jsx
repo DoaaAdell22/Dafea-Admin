@@ -68,7 +68,8 @@ const request = () =>{
 
         
       }
-  
+      setLoading(true)
+
     axios.get("https://dafeaa-backend.deplanagency.com/api/admin/orders" ,{
         headers : {
             Authorization:`Bearer ${idToken}`
@@ -81,7 +82,10 @@ const request = () =>{
         setTotal(res.data.count)
         setLoading(false)
     
-      }).catch(()=>{})
+      }).catch(()=>{
+        setLoading(false)
+
+      })
 }
 
 const merchantRequest = () =>{
@@ -94,7 +98,6 @@ const merchantRequest = () =>{
         }
   }).then((res)=>{
     setMerchants(res.data.data)
-    setLoading(false)
 
   }).catch(()=>{}) 
 }
@@ -108,20 +111,24 @@ const clientsRequest = () =>{
         }
   }).then((res)=>{
     setClients(res.data.data)
-    setLoading(false)
 
   }).catch(()=>{}) 
 }
 
   useEffect(()=>{
     
-    setLoading(true)
 
     
     request();
+  
+  },[currentPage, merchantId, orderStatus, client_id ])
+  useEffect(()=>{
+    
     merchantRequest()
     clientsRequest()
-  },[currentPage, merchantId, orderStatus, client_id ])
+    
+  
+  },[ ])
 
   const columns = [
 
