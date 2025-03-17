@@ -212,7 +212,7 @@ const clientId = (value) => {
     <Select.Option value="3"> <FormattedMessage id='AWAY' /> </Select.Option>
     <Select.Option value="4"> <FormattedMessage id='REJECT' /></Select.Option>
     <Select.Option value="5"> <FormattedMessage id='CANCEL' /></Select.Option>
-    <Select.Option value="5"> <FormattedMessage id='DONE' /></Select.Option>
+    <Select.Option value="6"> <FormattedMessage id='DONE' /></Select.Option>
   </Select>
   <Select
     style={{ width: 150, marginLeft: 10 }}
