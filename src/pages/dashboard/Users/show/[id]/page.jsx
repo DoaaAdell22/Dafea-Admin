@@ -3,10 +3,14 @@ import { Descriptions, Image } from 'antd';
 import { useParams, useLocation } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 import { FormattedMessage } from 'react-intl';
-import { Table } from 'antd';
+import { Table ,Button } from 'antd';
 const ShowPage = () => {
   const location = useLocation();
+    const navigate = useNavigate()
+  
   const [data, setData] = useState({});
   const params = useParams();
   const idToken = useSelector(state => state.Auth.idToken);
@@ -88,6 +92,13 @@ const dynamicLinks = [
       title: <FormattedMessage id='description'  />,
       dataIndex: 'description',
       render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='actions'  />,
+      dataIndex: 'description',
+      render: (text, record, index) => <Button onClick={() => navigate(`/dashboard/dynamic-link/show/${record.id}`,  { 
+      })}><FormattedMessage id='show' /></Button>
       
     },
     
