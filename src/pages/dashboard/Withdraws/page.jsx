@@ -22,10 +22,12 @@ const page = () => {
   const [from , setFrom] =useState("")
   const [to , setTo] = useState("")
   const [status , setStatus] = useState("")
+
   const TAKE = 10 ;
+
   const STATUS = {
     1 : <FormattedMessage id="Pending" /> ,
-    2 : <FormattedMessage id="PROGRESS" /> ,
+    2 : <FormattedMessage id="REJECTED" /> ,
     3 : <FormattedMessage id="DONE" />
   
   }
@@ -46,7 +48,7 @@ const request = () =>{
         
       }
       if(status){
-        params.status = status ;
+        params["filter[status]"] = status;
 
         
       }
@@ -167,7 +169,7 @@ placeholder= {intl.formatMessage({ id: "select_status" })}
       >
       
         <Select.Option value="1"><FormattedMessage id='PENDING' /> </Select.Option>
-        <Select.Option value="2"><FormattedMessage id='PROGRESS' />  </Select.Option>
+        <Select.Option value="2"><FormattedMessage id='REJECTED' />  </Select.Option>
         <Select.Option value="3"> <FormattedMessage id='DONE' />   </Select.Option>
       </Select>
         </div>

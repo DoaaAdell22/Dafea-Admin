@@ -549,5 +549,8 @@
   "privacy_en": "الخصوصية (EN)",
   "privacy_ar": "الخصوصية (AR)",
   "terms_en": "الشروط (en)",
-  "terms_ar": "المصطلحات (AR)"
+  "terms_ar": "المصطلحات (AR)",
+  "REJECTED": "مرفوض",
+  "dynamic_links": "الروابط الديناميكية",
+  "addresses": "العناوين"
 }

@@ -71,6 +71,76 @@ const addresses = [
    
     
   ]
+const dynamicLinks = [
+    {
+      title: <FormattedMessage id='index'  />,
+      dataIndex: 'index',
+      render: (text, record, index) => {return (index + 1)}
+      
+    },
+    {
+      title: <FormattedMessage id='name'  />,
+      dataIndex: 'name',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='description'  />,
+      dataIndex: 'description',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    
+    
+   
+    
+  ]
+const businessInformations = [
+  {
+    title: <FormattedMessage id='index'  />,
+    dataIndex: 'index',
+    render: (text, record, index) => {return (index + 1)}
+    
+  },
+    {
+      title: <FormattedMessage id='name'  />,
+      dataIndex: 'name',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='area'  />,
+      dataIndex: 'area',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='city'  />,
+      dataIndex: 'city',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='commercial_record'  />,
+      dataIndex: 'commercial_record',
+      render: (text, record, index) => <img src={text} width={50} height={50} />
+      
+    },
+    {
+      title: <FormattedMessage id='expired_date'  />,
+      dataIndex: 'expired_date',
+      render: (text, record, index) => <div>{text}</div>
+      
+    },
+    {
+      title: <FormattedMessage id='tax_number'  />,
+      dataIndex: 'tax_number',
+      
+    },
+    
+   
+    
+  ]
   
 
   const items = [
@@ -118,6 +188,32 @@ const addresses = [
       children:  <Table 
       columns={addresses}
       dataSource={data.addresses}
+      pagination = {false}
+
+    className="custom-table"  />
+
+,
+    },
+    {
+      key: '9',
+      label: <FormattedMessage id='business_informations' />,
+      span: 3,
+      children:  <Table 
+      columns={businessInformations}
+      dataSource={data.business_informations}
+      pagination = {false}
+
+    className="custom-table"  />
+
+,
+    },
+    {
+      key: '10',
+      label: <FormattedMessage id='dynamic_links' />,
+      span: 3,
+      children:  <Table 
+      columns={dynamicLinks}
+      dataSource={data.dynamic_links}
       pagination = {false}
 
     className="custom-table"  />

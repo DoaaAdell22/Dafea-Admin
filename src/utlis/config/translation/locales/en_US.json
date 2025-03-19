@@ -503,7 +503,7 @@
   "offer_price": "Offer Price",
   "Show Product": "Show Product",
   "active": "Active",
-  "addresses": "addresses",
+  "addresses": "Addresses",
   "street_name": "Street Name",
   "float_num": "Float Num",
   "building_num": "Building Num",
@@ -554,5 +554,7 @@
   "privacy_en": "Privacy (En)",
   "privacy_ar": "Privacy (Ar)",
   "terms_en": "Terms (En)",
-  "terms_ar": "Terms (Ar)"
+  "terms_ar": "Terms (Ar)",
+  "REJECTED": "Rejected",
+  "dynamic_links": "Dynamic Links"
 }
