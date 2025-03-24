@@ -22,8 +22,6 @@ const page = () => {
   const [currentPage , setcurrentPage] =useState(1)
   const [type, setType] = useState(undefined);
   const [loading, setLoading] = useState(false)
-  const [click1 , setClick1] = useState(null)
-  const [click2 , setClick2] = useState(null)
   const [click3 , setClick3] = useState(null)
   const [click4 , setClick4] = useState(null)
   const [search , setSearch] = useState('')

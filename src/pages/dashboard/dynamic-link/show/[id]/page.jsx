@@ -103,7 +103,7 @@ const ShowPage = () => {
   ]
   return (
     <div>
-    <h1><FormattedMessage id='Product' /></h1>
+    <h1><FormattedMessage id='Products' /></h1>
     <Table 
     columns={items}
     dataSource={data}

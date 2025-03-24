@@ -4,7 +4,6 @@ import { useParams, useLocation } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
 import { FormattedMessage } from 'react-intl';
 import { Table ,Button } from 'antd';
 const ShowPage = () => {

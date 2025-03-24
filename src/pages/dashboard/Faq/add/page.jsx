@@ -32,6 +32,8 @@ const page = () => {
                 }
                 ).catch((err)=>{
                     message.err('failed added')
+                    setLoading(false)
+
                 })
                     
 

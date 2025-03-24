@@ -43,6 +43,7 @@ const page = () => {
                 } , 2000)
                 }
                 ).catch((err)=>{
+                    setLoading(false)
                     message.err('failed added')
                 })
                     
